@@ -1,0 +1,99 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace zadanie_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.Write("Введите номер задачи от 5 до 7: ");
+            int caseNumber = Convert.ToInt32(Console.ReadLine());
+
+            switch (caseNumber)
+            {
+                
+                case 5:
+                    IMT();
+                    break;
+                case 6:
+                    SumGood(1, 1000000000);
+                    break;
+                case 7:
+                    Task_7(2, 35);
+                    break;
+                
+                default:
+                    Console.WriteLine("Введите номер от 5 до 7.");
+                    break;
+            }
+
+            Console.ReadKey();
+        }
+
+        
+
+        static void IMT()
+        {
+            Console.Write("Рост, м: ");
+            double h = Convert.ToDouble(Console.ReadLine());
+            Console.Write("Вес, кг: ");
+            double m = Convert.ToDouble(Console.ReadLine());
+            double imt = m / (h * h);
+            Console.WriteLine("ИМТ = {0:F2}", imt);
+
+            if (imt < 18.5)
+            {
+                Console.WriteLine("Для идеального веса Вам нужно набрать: {0}", (18.5 - imt) * (h * h));
+            }
+            else if (imt > 24.99)
+            {
+                Console.WriteLine("Для идеального веса Вам нужно сбросить: {0}", (imt - 24.99) * (h * h));
+            }
+            else
+            {
+                Console.WriteLine("У вас идеальный вес");
+            }
+        }
+
+        static void SumGood(int x, int y)
+        {
+            DateTime start = DateTime.Now;
+            int count = 0;
+            for (int i = x; i <= y; i++)
+            {
+                int sum = 0;
+                int temp = i;
+                while (temp != 0)
+                {
+                    sum += temp % 10;
+                    temp /= 10;
+                }
+
+                if (i % sum == 0)
+                {
+                    count++;
+                }
+            }
+            Console.WriteLine("Количество хороших чисел: {0}", count);
+            Console.WriteLine("Время выполнения программы: {0}", DateTime.Now - start);
+        }
+
+        static void Task_7(int a, int b)
+        {
+            if (a > b)
+            {
+                Console.WriteLine("Ошибка, a > b. Программа завершена.");
+            }
+            else
+            {
+                Console.WriteLine(a);
+                if (b > a)
+                {
+                    Task_7(a + 1, b);
+                }
+            }
+        }
